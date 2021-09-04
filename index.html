@@ -1,24 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="assets/cs/style.css"></script>
+    <link rel="stylesheet" href="./assets/cs/style.css">
+    </link>
     <title>JavaScript Quiz</title>
 </head>
+
 <body>
     <header class="wrap">
-        <div id ="highScore">view high score</div>
+        <div id="highScore">view high score</div>
         <div id="time">Time: 0</div>
     </header>
 
     <main>
+        <div id="questions" class="hide">
+            <h2 id="question-title"></h2>
+            <div id="choices">
+
+            </div>
+        </div>
         <!-- <button type="button" id="startBtn">Start</button> -->
+        <div id="feedback" class="hide">
+
+        </div>
+        <div id="end-page" class="hide">
+            <h2>Over!</h2>
+            <p>The final score is: </p>
+            <div id="initials"> </div>
+        </div>
+        <div id="end-page" class="hide">
+            <div id="finalpage">
+                <div id="initials"> </div>
+            </div>
+
+        </div>
 
     </main>
 
 
+    <script src="assets/js/questions.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>
