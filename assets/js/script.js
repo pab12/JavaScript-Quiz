@@ -7,7 +7,8 @@ var currentQuestionIndex = 0;
 var choicesEl = document.getElementById("choices");
 var feedbackEl = document.getElementById("feedback");
 var questionsEl = document.getElementById("questions");
-var finalscoreEl = document.getElementById("end-page");
+var endOfQuizEl = document.getElementById("end-page")
+var finalscoreEl = document.getElementById("final-message");
 btn.setAttribute('id', 'hi');
 btn.setAttribute('type', 'button');
 
@@ -19,6 +20,7 @@ sectEl.appendChild(btn);
 // function for  timer/score basic
 function countdown() {
     questionsEl.removeAttribute("class")
+    btn.setAttribute("class", "hide");
     
 
     var timeInterval = setInterval(function () {
@@ -28,8 +30,9 @@ function countdown() {
             console.log(timerEl);
         }
         else {
-            timerEl.textContent = "Time: " + 0;
+            timerEl.textContent = time;
             clearInterval(timeInterval);
+            
             console.log(timerEl);
         }
     }, delayInterval);
@@ -59,12 +62,15 @@ function getQuestions() {
 function questionClick() {
     // Check if user guess wrong
     if (this.value !== questions[currentQuestionIndex].answer) {
+        feedbackEl.setAttribute("class", "hide");
         time -= 15;
         if(time < 0){
             time = 0;
         }
         timerEl.textContent = time;
         feedbackEl.textContent = "wrong";
+        
+        feedbackEl.removeAttribute("class","hide");
 
     }
     else {
@@ -85,7 +91,11 @@ function questionClick() {
 }
 
 function quizEnd() {
-    finalscoreEl.textContent = time;
+    
+    finalscoreEl.textContent ="your score is: " + time;
+    timerEl.setAttribute("class", "hide")
     questionsEl.setAttribute("class", "hide")
-}
+    endOfQuizEl.removeAttribute("class");
+    feedbackEl.removeAttribute("class","hide");
+};
 btn.onclick = countdown;
