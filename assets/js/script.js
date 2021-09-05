@@ -9,6 +9,10 @@ var feedbackEl = document.getElementById("feedback");
 var questionsEl = document.getElementById("questions");
 var endOfQuizEl = document.getElementById("end-page")
 var finalscoreEl = document.getElementById("final-message");
+var initialsInput = document.querySelector('#initials');
+var submitButton = document.querySelector('#submit');
+var msgDiv = document.querySelector('#msg');
+var highScores = 0;
 btn.setAttribute('id', 'hi');
 btn.setAttribute('type', 'button');
 
@@ -27,6 +31,7 @@ function countdown() {
         if (time >= 1) {
             timerEl.textContent = "Time: " + time;
             time--;
+         
             console.log(timerEl);
         }
         else {
@@ -37,7 +42,8 @@ function countdown() {
         }
     }, delayInterval);
     getQuestions();
-}
+  
+};
 
 // after timer started get questions
 function getQuestions() {
@@ -60,7 +66,6 @@ function getQuestions() {
 }
 
 function questionClick() {
-    // Check if user guess wrong
     if (this.value !== questions[currentQuestionIndex].answer) {
         feedbackEl.setAttribute("class", "hide");
         time -= 15;
@@ -90,6 +95,33 @@ function questionClick() {
 
 }
 
+// initial  button function
+submitButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    var playerInitials = document.querySelector('#initials').value;
+
+    if( playerInitials === '') {
+        displayMessage('error', 'initials cannot be blank');
+    } else {
+        displayMessage('success', 'well done');
+
+        localStorage.setItem('intials', playerInitials);
+        
+    }
+});
+
+    // saving highscore
+    function highScore(){
+        highScores = time;
+            localStorage.setItem('highscore',highScores );
+            // JSON.parse(window.localStorage.getItem(highScores));
+    }
+
+function displayMessage(type, message) {
+    msgDiv.textContent = message;
+    msgDiv.setAttribute('class', type);
+  }
+
 function quizEnd() {
     
     finalscoreEl.textContent ="your score is: " + time;
@@ -97,5 +129,8 @@ function quizEnd() {
     questionsEl.setAttribute("class", "hide")
     endOfQuizEl.removeAttribute("class");
     feedbackEl.removeAttribute("class","hide");
+    submitButton.removeAttribute("class","hide");
+    localStorage.setItem('highscore',finalscoreEl);
+    highScore();
 };
 btn.onclick = countdown;
