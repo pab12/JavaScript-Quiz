@@ -17,32 +17,36 @@
     </header>
 
     <main>
-        <div id="questions" class="hide">
-            <h2 id="question-title"></h2>
-            <div id="choices">
-
+        <section class="row">
+            <div id="questions" class="hide">
+                <h2 id="question-title"></h2>
+                <div id="choices"></div>
             </div>
-        </div>
+        </section>
         
-        <div id="end-page" class="hide">
-            <h2>Over!</h2>
-            <p id="final-message"></p>
-            <!-- initials prompts to save for your highscore -->
-            <label for="initials">initials</label>
-            <input type="text" name="initials" id="initials" />
-        </div>
-        <div id="msg"></div>
-        <button id="submit" class="hide">Submit</button>
+        <section class="row">
+            <div id="end-page" class="hide">
+                <h2>Over!</h2>
+                <p id="final-message"></p>
+                <!-- initials prompts to save for your highscore -->
+                <label for="initials">initials</label>
+                <input type="text" name="initials" id="initials" />
+                <button id="submit" class="hide">Submit</button>
+                <div id="msg"></div>
+            </div>
+        </section>
+        
+        
+       
         <!-- where we see when we answer a question correct or wrong -->
         <div id="feedback" class="hide">
 
         </div>
-        <!-- <div id="end-page" class="hide">
-            <div id="finalpage">
-                <div id="initials"> </div>
+        <div id="high-score" class="hide">
+            <div id="finalpage">hi
+                <!-- <div id="initials"> </div> -->
             </div>
-
-        </div> -->
+        </div>
 
     </main>
 

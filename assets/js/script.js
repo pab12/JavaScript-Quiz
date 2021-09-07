@@ -23,7 +23,7 @@ sectEl.appendChild(btn);
 
 // function for  timer/score basic
 function countdown() {
-    questionsEl.removeAttribute("class")
+    questionsEl.removeAttribute("class","hide")
     btn.setAttribute("class", "hide");
     
 
@@ -35,7 +35,7 @@ function countdown() {
             console.log(timerEl);
         }
         else {
-            timerEl.textContent = time;
+            // timerEl.textContent = time;
             clearInterval(timeInterval);
             
             console.log(timerEl);
@@ -72,7 +72,7 @@ function questionClick() {
         if(time < 0){
             time = 0;
         }
-        timerEl.textContent = time;
+        timerEl.textContent = "Time: " + time;
         feedbackEl.textContent = "wrong";
         
         feedbackEl.removeAttribute("class","hide");
@@ -103,7 +103,7 @@ submitButton.addEventListener('click', function(event) {
     if( playerInitials === '') {
         displayMessage('error', 'initials cannot be blank');
     } else {
-        displayMessage('success', 'well done');
+        displayMessage('success', ' score saved');
 
         localStorage.setItem('intials', playerInitials);
         
@@ -127,7 +127,7 @@ function quizEnd() {
     finalscoreEl.textContent ="your score is: " + time;
     timerEl.setAttribute("class", "hide")
     questionsEl.setAttribute("class", "hide")
-    endOfQuizEl.removeAttribute("class");
+    endOfQuizEl.removeAttribute("class", "hide");
     feedbackEl.removeAttribute("class","hide");
     submitButton.removeAttribute("class","hide");
     localStorage.setItem('highscore',finalscoreEl);
