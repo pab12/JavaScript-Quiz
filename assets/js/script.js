@@ -12,6 +12,8 @@ var finalscoreEl = document.getElementById("final-message");
 var initialsInput = document.querySelector('#initials');
 var submitButton = document.querySelector('#submit');
 var msgDiv = document.querySelector('#msg');
+var allScores = document.getElementById("high-scores");
+var viewScores = document.getElementById("highScore");
 var highScores = 0;
 btn.setAttribute('id', 'hi');
 btn.setAttribute('type', 'button');
@@ -35,7 +37,8 @@ function countdown() {
             console.log(timerEl);
         }
         else {
-            // timerEl.textContent = time;
+            timerEl.textContent = time;
+            time = "";
             clearInterval(timeInterval);
             
             console.log(timerEl);
@@ -84,6 +87,7 @@ function questionClick() {
     currentQuestionIndex++;
 
     if(currentQuestionIndex === questions.length){
+        
         quizEnd();
     }
     else {
@@ -105,8 +109,10 @@ submitButton.addEventListener('click', function(event) {
     } else {
         displayMessage('success', ' score saved');
 
-        localStorage.setItem('intials', playerInitials);
-        
+        localStorage.setItem('initials', playerInitials);
+       
+        // var score = localStorage.setItem('highscore');
+        renderHighScore();
     }
 });
 
@@ -115,12 +121,20 @@ submitButton.addEventListener('click', function(event) {
         highScores = time;
             localStorage.setItem('highscore',highScores );
             // JSON.parse(window.localStorage.getItem(highScores));
+            
     }
 
 function displayMessage(type, message) {
     msgDiv.textContent = message;
     msgDiv.setAttribute('class', type);
-  }
+  };
+
+  function renderHighScore() {
+      var initial = localStorage.getItem('initials');
+      var score = localStorage.getItem('highscore');
+      allScores.textContent = initial + score;
+      localStorage.setItem('allScores', allScores);
+  };
 
 function quizEnd() {
     
@@ -130,7 +144,13 @@ function quizEnd() {
     endOfQuizEl.removeAttribute("class", "hide");
     feedbackEl.removeAttribute("class","hide");
     submitButton.removeAttribute("class","hide");
-    localStorage.setItem('highscore',finalscoreEl);
+    // localStorage.setItem('highscore',finalscoreEl);
     highScore();
+    renderHighScore();
+
+
+    
 };
+viewScores.onclick = renderHighScore;
+
 btn.onclick = countdown;
